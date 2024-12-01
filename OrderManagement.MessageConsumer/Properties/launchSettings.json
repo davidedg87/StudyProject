@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OrderManagement.Messaging.Consumer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
