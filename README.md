@@ -1,4 +1,4 @@
-# Progetto PhotoSi
+# StudyProject
 
 ## Descrizione
 
