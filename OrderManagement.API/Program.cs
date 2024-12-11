@@ -41,7 +41,8 @@ builder.Services.AddApiVersioningServices();
 builder.Services.AddApiFilters();
 builder.Services.AddApiCaching(configuration);
 builder.Services.AddHealthChecks(configuration);
-builder.Services.AddDbContext(configuration);
+builder.Services.AddDbContexts(configuration);
+builder.Services.AddDbContexts(configuration);
 builder.Services.AddDbConnection(configuration);
 builder.Host.AddLogging(configuration);
 builder.Services.AddMassTransitServices(configuration);
@@ -58,6 +59,12 @@ builder.Services.AddHttpExtensions(configuration);
 #region Build
 
 var app = builder.Build();
+
+#endregion
+
+#region Migrations
+
+app.ApplyMigrations();
 
 #endregion
 

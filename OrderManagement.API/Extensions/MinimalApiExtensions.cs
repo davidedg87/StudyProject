@@ -1,7 +1,6 @@
 ﻿using Asp.Versioning;
 using Asp.Versioning.Builder;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Reflection.Metadata.Ecma335;
 
 namespace OrderManagement.API.Extensions
 {
@@ -58,41 +57,51 @@ namespace OrderManagement.API.Extensions
 
         public static void AddExaminationAPI(this WebApplication app)
         {
+            ApiVersionSet apiVersionSet = app.NewApiVersionSet()
+               .HasApiVersion(new ApiVersion(1))
+               .HasApiVersion(new ApiVersion(2))
+               .ReportApiVersions()
+               .Build();
 
-            app.MapGet("api/examination/products", async () =>
+            // Aggiungi un gruppo per i tag (equivalente al controller)
+            RouteGroupBuilder examinationGroup = app.MapGroup("/api/v{apiVersion:apiVersion}/examination")
+                .WithApiVersionSet(apiVersionSet)
+                .WithTags("Examination Minimal"); // Associa un tag per raggruppare gli endpoint
+
+
+            examinationGroup.MapGet("api/examination/products", async () =>
             {
                 return Results.Ok("Products");
-            });
+            }).MapToApiVersion(1);
 
 
-
-            app.MapGet("api/examination/products/{id}", async (int id) =>
+            examinationGroup.MapGet("api/examination/products/{id}", async (int id) =>
 
             {
                 return Results.Ok("map get product id");
 
             }
 
-            );
+            ).MapToApiVersion(1);
 
 
-            app.MapPost("api/examination/products", async (string products) =>
+            examinationGroup.MapPost("api/examination/products", async (string products) =>
             {
 
                 return Results.Ok("Product added");
-            });
+            }).MapToApiVersion(1);
 
 
-            app.MapPut("api/examination/products/{id}", async (int id, string product) =>
+            examinationGroup.MapPut("api/examination/products/{id}", async (int id, string product) =>
             {
 
                 return Results.Ok("Product updated");
-            });
+            }).MapToApiVersion(1);
 
-            app.MapDelete("api/examination/products/{id}", async (int id) =>
+            examinationGroup.MapDelete("api/examination/products/{id}", async (int id) =>
             {
                 return Results.Ok("product deleted");
-            });
+            }).MapToApiVersion(1);
 
 
 

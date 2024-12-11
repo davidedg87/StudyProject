@@ -30,7 +30,7 @@ configuration["Serilog:WriteTo:2:Args:nodeUris"] =
 builder.Services.AddHttpClient();
 builder.Services.ConfigureServices();
 builder.Services.AddCaching(configuration);
-builder.Services.AddDbContext(configuration);
+builder.Services.AddDbContexts(configuration);
 
 #region Logs
 

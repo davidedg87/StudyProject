@@ -53,7 +53,7 @@ namespace OrderManagement.Consumer
 
                         services.ConfigureServices();
                         services.AddCaching(configuration);
-                        services.AddDbContext(configuration);
+                        services.AddDbContexts(configuration);
 
                         // Configura MassTransit
                         services.AddMassTransit(x =>
