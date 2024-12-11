@@ -37,7 +37,7 @@ services:
   order_management_consumer:
     build:
       context: .  # Imposta il contesto al livello superiore
-      dockerfile: OrderManagement.MessageConsumer/Dockerfile  # Specifica il percorso del Dockerfile
+      dockerfile: src/OrderManagement.MessageConsumer/Dockerfile  # Specifica il percorso del Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Host=postgres;Database=order-monitoring-db;Username=myuser;Password=mypassword;"
@@ -56,7 +56,7 @@ services:
   order_background_service:
     build:
       context: .  # Imposta il contesto al livello superiore
-      dockerfile: OrderManagement.BackgroundServices/Dockerfile  # Specifica il percorso del Dockerfile
+      dockerfile: src/OrderManagement.BackgroundServices/Dockerfile  # Specifica il percorso del Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Host=postgres;Database=order-monitoring-db;Username=myuser;Password=mypassword;"
@@ -75,7 +75,7 @@ services:
   order_management_api:
     build:
       context: .  # Imposta il contesto al livello superiore
-      dockerfile: OrderManagement.API/Dockerfile  # Specifica il percorso del Dockerfile
+      dockerfile: src/OrderManagement.API/Dockerfile  # Specifica il percorso del Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Host=postgres;Database=order-monitoring-db;Username=myuser;Password=mypassword;"
